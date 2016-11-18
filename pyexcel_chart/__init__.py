@@ -30,6 +30,7 @@ CHARTS = {
     'maps': 'Maps'
 }
 
+
 class Chart(Renderer):
 
     file_types = ('svg',)
@@ -43,5 +44,5 @@ class Chart(Renderer):
         cls = getattr(pygal, cls_name)
         bar = cls(title=title, **keywords)
         for key in the_dict:
-            bar.add(key, [value for value in the_dict[key] if value !=''])
+            bar.add(key, [value for value in the_dict[key] if value != ''])
         self.stream.write(bar.render())

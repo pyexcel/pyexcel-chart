@@ -7,9 +7,14 @@ def bar_chart():
     pe.save_as(array=data, dest_file_name='test.bar.svg')
     os.unlink('test.bar.svg')
 
+
 def chart_parameters():
-    data=[["x", "y", "z"], [1,2,3],[1,2,13]]
-    x_labels=[2011, 2012]
+    data = [
+        ["x", "y", "z"],
+        [1, 2, 3],
+        [1, 2, 13]
+    ]
+    x_labels = [2011, 2012]
     pe.save_as(
         array=data,
         dest_chart_type="bar",
