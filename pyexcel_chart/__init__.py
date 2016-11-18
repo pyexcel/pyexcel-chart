@@ -7,9 +7,11 @@
     :copyright: (c) 2016 by Onni Software Ltd.
     :license: New BSD License, see LICENSE for further details
 """
+import sys
 import pygal
 from pyexcel.renderers.factory import Renderer
 
+PY2 = sys.version_info[0] == 2
 DEFAULT_TITLE = 'pyexcel chart rendered by pygal'
 KEYWORD_CHART_TYPE = 'chart_type'
 DEFAULT_CHART_TYPE = 'bar'
@@ -42,7 +44,10 @@ class Chart(Renderer):
         the_dict = sheet.to_dict()
         cls_name = CHARTS.get(chart_type)
         cls = getattr(pygal, cls_name)
-        bar = cls(title=title, **keywords)
+        instance = cls(title=title, **keywords)
         for key in the_dict:
-            bar.add(key, [value for value in the_dict[key] if value != ''])
-        self.stream.write(bar.render())
+            instance.add(key, [value for value in the_dict[key] if value != ''])
+        chart_content = instance.render()
+        if PY2:
+            chart_content.decode('utf-8')
+        self.stream.write(chart_content)
