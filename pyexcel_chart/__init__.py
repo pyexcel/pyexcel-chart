@@ -46,7 +46,8 @@ class Chart(Renderer):
         cls = getattr(pygal, cls_name)
         instance = cls(title=title, **keywords)
         for key in the_dict:
-            instance.add(key, [value for value in the_dict[key] if value != ''])
+            data_array = [value for value in the_dict[key] if value != '']
+            instance.add(key, data_array)
         chart_content = instance.render()
         if PY2:
             chart_content.decode('utf-8')
