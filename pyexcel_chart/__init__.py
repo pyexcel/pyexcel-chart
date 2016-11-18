@@ -37,6 +37,11 @@ class Chart(Renderer):
 
     file_types = ('svg',)
 
+    def __init__(self, file_type):
+        Renderer.__init__(self, file_type)
+        if not PY2:
+            self.WRITE_FLAG = 'wb'
+
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
                      chart_type=DEFAULT_CHART_TYPE, **keywords):
         if len(sheet.colnames) == 0:
@@ -49,6 +54,4 @@ class Chart(Renderer):
             data_array = [value for value in the_dict[key] if value != '']
             instance.add(key, data_array)
         chart_content = instance.render()
-        if PY2:
-            chart_content.decode('utf-8')
         self.stream.write(chart_content)
