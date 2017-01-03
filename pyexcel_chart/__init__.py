@@ -2,9 +2,9 @@
     pyexcel_chart
     ~~~~~~~~~~~~~~~~~~~
 
-    drawing plugin for pyexcel
+    chart drawing plugin for pyexcel
 
-    :copyright: (c) 2016 by Onni Software Ltd.
+    :copyright: (c) 2016-2017 by Onni Software Ltd.
     :license: New BSD License, see LICENSE for further details
 """
 import sys
@@ -23,6 +23,7 @@ CHARTS = {
     'xy': 'XY',
     'pie': 'Pie',
     'radar': 'Radar',
+    'box': 'Box',
     'dot': 'Dot',
     'funnel': 'Funnel',
     'solidgauge': 'SolidGauge',
@@ -50,4 +51,4 @@ class Chart(Renderer):
         chart_content = instance.render()
         if PY2:
             chart_content.decode('utf-8')
-        self.stream.write(chart_content)
+        self._stream.write(chart_content)
