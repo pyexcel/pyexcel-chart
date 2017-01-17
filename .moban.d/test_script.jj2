@@ -1,6 +1,5 @@
 {%include "test.sh.jj2"%}
 
-move xy_cosinus.svg docs\source\_static
-move histogram.svg docs\source\_static
-move radar.svg docs\source\_static
+move *.svg docs\source\_static
+
 

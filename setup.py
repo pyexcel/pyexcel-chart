@@ -41,7 +41,7 @@ CLASSIFIERS = [
 ]
 
 INSTALL_REQUIRES = [
-    'pyexcel>=0.3.3',
+    'pyexcel>=0.3.4',
     'pygal>=2.2.3',
 ]
 

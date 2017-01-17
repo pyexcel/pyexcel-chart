@@ -12,7 +12,7 @@ targets:
   - LICENSE: LICENSE.jj2
   - MANIFEST.in: MANIFEST.in.jj2
   - "tests/requirements.txt": "tests/requirements.txt"
-  - test.sh: test.sh.jj2
+  - test.sh: test_script.sh.jj2
   - test.bat: test_script.jj2
   - .gitignore: .gitignore
   - README.rst: README.rst
