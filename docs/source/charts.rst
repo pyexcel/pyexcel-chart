@@ -185,4 +185,58 @@ Here is the source code `using pygal.Box directly <http://pygal.org/en/stable/do
 
 
 
+Dot chart
+--------------------------------------------------------------------------------
+
+.. image:: _static/dot.svg
+   :width: 600px
+   :height: 400px
+		   
+Here is the source code using pyexcel::
+
+    >>> title = 'V8 benchmark results'
+    >>> x_labels = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay', 'NavierStokes']
+    >>> data = OrderedDict()
+    >>> data['Chrome'] = [6395, 8212, 7520, 7218, 12464, 1660, 2123, 8607] 
+    >>> data['Firefox'] = [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450]
+    >>> data['Opera'] = [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669]
+    >>> data['IE'] = [43, 41, 59, 79, 144, 136, 34, 102]
+    >>> pe.save_as(
+    ...     adict=data,
+    ...     dest_title=title,
+    ...     dest_chart_type='dot',
+    ...     dest_file_name='dot.svg',
+    ...     dest_x_labels=x_labels,
+    ...     dest_x_label_rotation=30
+    ... )
+
+Here is the source code `using pygal.Dot directly <http://pygal.org/en/stable/documentation/types/dot.html#basic>`_
+
+
+Funnel chart
+--------------------------------------------------------------------------------
+
+.. image:: _static/funnel.svg
+   :width: 600px
+   :height: 400px
+		   
+Here is the source code using pyexcel::
+
+    >>> title = 'V8 benchmark results'
+    >>> x_labels = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay', 'NavierStokes']
+    >>> data = OrderedDict()
+    >>> data['Chrome'] = [6395, 8212, 7520, 7218, 12464, 1660, 2123, 8607] 
+    >>> data['Firefox'] = [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450]
+    >>> data['Opera'] = [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669]
+    >>> pe.save_as(
+    ...     adict=data,
+    ...     dest_title=title,
+    ...     dest_chart_type='funnel',
+    ...     dest_file_name='funnel.svg',
+    ...     dest_x_labels=x_labels,
+    ... )
+
+Here is the source code `using pygal.Funnel directly <http://pygal.org/en/stable/documentation/types/funnel.html#basic>`_
+
+
 
