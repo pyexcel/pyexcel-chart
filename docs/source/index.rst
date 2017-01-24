@@ -39,3 +39,4 @@ Content
 .. toctree::
 
   charts
+  usage

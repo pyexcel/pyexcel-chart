@@ -44,9 +44,15 @@ class Chart(Renderer):
             self.WRITE_FLAG = 'wb'
 
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
-                     chart_type=DEFAULT_CHART_TYPE, **keywords):
+                     chart_type=DEFAULT_CHART_TYPE, label_x_in_column=0,
+                     label_y_in_row=0,
+                     **keywords):
+        params = {}
+        if len(sheet.rownames) == 0:
+            sheet.name_rows_by_column(label_x_in_column)
+            params['x_labels'] = sheet.rownames
         if len(sheet.colnames) == 0:
-            sheet.name_columns_by_row(0)
+            sheet.name_columns_by_row(label_y_in_row)
         the_dict = sheet.to_dict()
         cls_name = CHARTS.get(chart_type)
         cls = getattr(pygal, cls_name)
