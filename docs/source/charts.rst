@@ -59,8 +59,8 @@ Here is the source code using pyexcel::
     ...     'Wide bars': [(5, 0, 10), (4, 5, 13), (2, 0, 15)],
     ...     'Narrow bars':  [(10, 1, 2), (12, 4, 4.5), (8, 11, 13)]
     ... }
-    >>> pe.save_as(
-    ...     adict=data,
+    >>> pe.save_book_as(
+    ...     bookdict=data,
     ...     dest_chart_type='histogram',
     ...     dest_file_name='histogram.svg'
     ... )
@@ -92,12 +92,13 @@ Here is the source code using pyexcel::
     ...     'y = 1':  [(-5, 1), (5, 1)],
     ...     'y = -1': [(-5, -1), (5, -1)]
     ... }
-    >>> pe.save_as(
-    ...     adict=data,
+    >>> pe.save_book_as(
+    ...     bookdict=data,
     ...     dest_chart_type='xy',
     ...     dest_title='XY Cosinus',
     ...     dest_file_name='xy_cosinus.svg'
     ... )
+
 
 
 Here is the source code `using pygal <http://pygal.org/en/stable/documentation/types/xy.html#basic>`_
@@ -195,8 +196,8 @@ Dot chart
 Here is the source code using pyexcel::
 
     >>> title = 'V8 benchmark results'
-    >>> x_labels = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay', 'NavierStokes']
     >>> data = OrderedDict()
+	>>> data['x labels'] = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay', 'NavierStokes']
     >>> data['Chrome'] = [6395, 8212, 7520, 7218, 12464, 1660, 2123, 8607] 
     >>> data['Firefox'] = [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450]
     >>> data['Opera'] = [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669]
@@ -206,7 +207,6 @@ Here is the source code using pyexcel::
     ...     dest_title=title,
     ...     dest_chart_type='dot',
     ...     dest_file_name='dot.svg',
-    ...     dest_x_labels=x_labels,
     ...     dest_x_label_rotation=30
     ... )
 
@@ -223,8 +223,8 @@ Funnel chart
 Here is the source code using pyexcel::
 
     >>> title = 'V8 benchmark results'
-    >>> x_labels = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay', 'NavierStokes']
     >>> data = OrderedDict()
+    >>> data['x labels'] = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay', 'NavierStokes']
     >>> data['Chrome'] = [6395, 8212, 7520, 7218, 12464, 1660, 2123, 8607] 
     >>> data['Firefox'] = [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450]
     >>> data['Opera'] = [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669]

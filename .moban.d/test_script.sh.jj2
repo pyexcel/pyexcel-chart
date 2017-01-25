@@ -1,5 +1,5 @@
 {%include "test.sh.jj2"%}
 
-mv *.svg docs/source/_static
+mv -v *.svg docs/source/_static
 
 
