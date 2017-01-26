@@ -232,8 +232,7 @@ Here is the source code using pyexcel::
     ...     adict=data,
     ...     dest_title=title,
     ...     dest_chart_type='funnel',
-    ...     dest_file_name='funnel.svg',
-    ...     dest_x_labels=x_labels,
+    ...     dest_file_name='funnel.svg'
     ... )
 
 Here is the source code `using pygal.Funnel directly <http://pygal.org/en/stable/documentation/types/funnel.html#basic>`_

@@ -142,7 +142,7 @@ class ExXY(object):
         instance = cls(title=title, **keywords)
         for sheet in to_book(book):
             points = zip(sheet.column[x_in_column],
-                             sheet.column[y_in_column])
+                         sheet.column[y_in_column])
             instance.add(sheet.name, points)
         chart_content = instance.render()
         return chart_content

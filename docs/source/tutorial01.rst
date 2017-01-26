@@ -9,8 +9,9 @@ Data source: `Life Expectancy, The World Bank, World Development Indicators
    :height: 400px
 
 
-example::
+First, let us read the data on life expectancy at birth around all countries.
 
+.. code-block:: python
 
     >>> import pyexcel as p
     >>> sheet = p.get_sheet(file_name='API_SP.DYN.LE00.IN_DS2_en_csv_v2.csv')
@@ -27,7 +28,12 @@ example::
     +-------------------+------------------------------+----------------+----------------+------+
     | Country Name      | Country Code                 | Indicator Name | Indicator Code | 1960 |
     +-------------------+------------------------------+----------------+----------------+------+
-    >>> del sheet.row[:4]
+
+The first four rows contain meta data and are not needed. Let us remove them
+
+.. code-block:: python
+
+	>>> del sheet.row[:4]
     >>> sheet.top_left()
     pyexcel sheet:
     +--------------+--------------+-----------------------------------------+----------------+---------------+
@@ -41,7 +47,12 @@ example::
     +--------------+--------------+-----------------------------------------+----------------+---------------+
     | Angola       | AGO          | Life expectancy at birth, total (years) | SP.DYN.LE00.IN | 32.9848292683 |
     +--------------+--------------+-----------------------------------------+----------------+---------------+
-    >>> del sheet.column[1:4]
+
+Now the column 'Country Code', 'Indicator Name', and 'Indicator Code' are not interesting. Let us remove them
+
+.. code-block:: python
+
+	>>> del sheet.column[1:4]
     >>> sheet.top_left()
     pyexcel sheet:
     +--------------+---------------+---------------+---------------+---------------+
@@ -55,7 +66,13 @@ example::
     +--------------+---------------+---------------+---------------+---------------+
     | Angola       | 32.9848292683 | 33.3862195122 | 33.7875853659 | 34.1884634146 |
     +--------------+---------------+---------------+---------------+---------------+
-    >>> sheet.transpose()
+
+In order to draw, x labels should be in one column and data series should be presented like columns. Hence,
+let us transpose the table
+	
+.. code-block:: python
+
+	>>> sheet.transpose()
     >>> sheet.top_left()
     pyexcel sheet:
     +--------------+---------------+---------+---------------+---------------+
@@ -69,6 +86,33 @@ example::
     +--------------+---------------+---------+---------------+---------------+
     | 1963         | 66.7139756098 |         | 33.6578780488 | 34.1884634146 |
     +--------------+---------------+---------+---------------+---------------+
-    >>> sheet.name_columns_by_row(0)
+
+Now let's select BRICS countries for viewing,
+
+.. code-block:: python
+
+	>>> sheet.name_columns_by_row(0)
     >>> sheet.column.select(['Country Name', 'Brazil', 'Russian Federation', 'India', 'China', 'South Africa'])
-    >>> sheet.save_as("life_expectancy_in_brics_countries.svg", chart_type='line', title='Life expectancy in BRICS countries', x_labels_major_count=10, x_label_rotation=30, show_minor_x_labels=False)
+    >>> sheet.top_left()
+    pyexcel sheet:
+    +--------------+---------------+---------------+---------------+--------------------+
+    | Country Name |    Brazil     |     China     |     India     | Russian Federation |
+    +==============+===============+===============+===============+====================+
+    | 1960         | 54.2054634146 | 43.354        | 41.1719512195 | 66.0552926829      |
+    +--------------+---------------+---------------+---------------+--------------------+
+    | 1961         | 54.7187073171 | 43.6733414634 | 41.7904878049 | 66.5970243902      |
+    +--------------+---------------+---------------+---------------+--------------------+
+    | 1962         | 55.2356585366 | 44.3983414634 | 42.4174146341 | 67.0214146341      |
+    +--------------+---------------+---------------+---------------+--------------------+
+    | 1963         | 55.7513902439 | 45.5788780488 | 43.0527317073 | 67.339902439       |
+    +--------------+---------------+---------------+---------------+--------------------+
+    | 1964         | 56.2629512195 | 47.1895609756 | 43.6984146341 | 67.5665121951      |
+    +--------------+---------------+---------------+---------------+--------------------+
+
+We got a perfect data table. Let us draw it to a svg file:
+
+.. code-block:: python
+
+    >>> sheet.save_as("life_expectancy_in_brics_countries.svg", chart_type='line',
+    ...     title='Life expectancy at birth in BRICS countries (years)',
+    ...     x_labels_major_count=10, x_label_rotation=30, show_minor_x_labels=False)
