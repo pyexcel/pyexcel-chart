@@ -40,3 +40,4 @@ Content
 
   charts
   usage
+  tutorial01
