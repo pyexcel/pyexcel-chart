@@ -9,12 +9,15 @@
 """
 import sys
 import pygal
+from functools import partial
 from pyexcel.renderers.factory import Renderer
+
 
 PY2 = sys.version_info[0] == 2
 DEFAULT_TITLE = 'pyexcel chart rendered by pygal'
 KEYWORD_CHART_TYPE = 'chart_type'
 DEFAULT_CHART_TYPE = 'bar'
+
 
 if PY2:
     from StringIO import StringIO as BytesIO
@@ -181,7 +184,11 @@ class Chart(Renderer):
             self.WRITE_FLAG = 'wb'
 
     def get_io(self):
-        return BytesIO()
+        io = BytesIO()
+        def repr_svg(self):
+            return self.getvalue().decode('utf-8')
+        io._repr_svg_ = partial(repr_svg, io)
+        return io
 
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
                      chart_type=DEFAULT_CHART_TYPE, label_x_in_column=0,
