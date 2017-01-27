@@ -16,6 +16,11 @@ DEFAULT_TITLE = 'pyexcel chart rendered by pygal'
 KEYWORD_CHART_TYPE = 'chart_type'
 DEFAULT_CHART_TYPE = 'bar'
 
+if PY2:
+    from StringIO import StringIO as BytesIO
+else:
+    from io import BytesIO
+
 
 class ExPie(object):
     def __init__(self):
@@ -174,6 +179,9 @@ class Chart(Renderer):
         Renderer.__init__(self, file_type)
         if not PY2:
             self.WRITE_FLAG = 'wb'
+
+    def get_io(self):
+        return BytesIO()
 
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
                      chart_type=DEFAULT_CHART_TYPE, label_x_in_column=0,
