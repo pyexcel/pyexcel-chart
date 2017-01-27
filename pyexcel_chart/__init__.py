@@ -185,8 +185,10 @@ class Chart(Renderer):
 
     def get_io(self):
         io = BytesIO()
+
         def repr_svg(self):
             return self.getvalue().decode('utf-8')
+
         io._repr_svg_ = partial(repr_svg, io)
         return io
 

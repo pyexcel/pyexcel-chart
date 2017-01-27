@@ -113,6 +113,6 @@ We got a perfect data table. Let us draw it to a svg file:
 
 .. code-block:: python
 
-    >>> svg = sheet.save_to_memory(file_type='svg', chart_type='line',
+    >>> sheet.save_as("life_expectancy_in_brics_countries.svg", chart_type='line',
     ...     title='Life expectancy at birth in BRICS countries (years)',
-    ...     x_labels_major_count=10, x_label_rotation=30, show_minor_x_labels=False)#"life_expectancy_in_brics_countries.svg"
+    ...     x_labels_major_count=10, x_label_rotation=30, show_minor_x_labels=False)
