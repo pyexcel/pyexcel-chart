@@ -33,7 +33,7 @@ The first four rows contain meta data and are not needed. Let us remove them
 
 .. code-block:: python
 
-	>>> del sheet.row[:4]
+    >>> del sheet.row[:4]
     >>> sheet.top_left()
     pyexcel sheet:
     +--------------+--------------+-----------------------------------------+----------------+---------------+
@@ -52,7 +52,7 @@ Now the column 'Country Code', 'Indicator Name', and 'Indicator Code' are not in
 
 .. code-block:: python
 
-	>>> del sheet.column[1:4]
+    >>> del sheet.column[1:4]
     >>> sheet.top_left()
     pyexcel sheet:
     +--------------+---------------+---------------+---------------+---------------+
@@ -69,10 +69,10 @@ Now the column 'Country Code', 'Indicator Name', and 'Indicator Code' are not in
 
 In order to draw, x labels should be in one column and data series should be presented like columns. Hence,
 let us transpose the table
-	
+    
 .. code-block:: python
 
-	>>> sheet.transpose()
+    >>> sheet.transpose()
     >>> sheet.top_left()
     pyexcel sheet:
     +--------------+---------------+---------+---------------+---------------+
@@ -91,7 +91,7 @@ Now let's select BRICS countries for viewing,
 
 .. code-block:: python
 
-	>>> sheet.name_columns_by_row(0)
+    >>> sheet.name_columns_by_row(0)
     >>> sheet.column.select(['Country Name', 'Brazil', 'Russian Federation', 'India', 'China', 'South Africa'])
     >>> sheet.top_left()
     pyexcel sheet:
@@ -113,6 +113,6 @@ We got a perfect data table. Let us draw it to a svg file:
 
 .. code-block:: python
 
-    >>> sheet.save_as("life_expectancy_in_brics_countries.svg", chart_type='line',
+    >>> svg = sheet.save_to_memory(file_type='svg', chart_type='line',
     ...     title='Life expectancy at birth in BRICS countries (years)',
-    ...     x_labels_major_count=10, x_label_rotation=30, show_minor_x_labels=False)
+    ...     x_labels_major_count=10, x_label_rotation=30, show_minor_x_labels=False)#"life_expectancy_in_brics_countries.svg"
