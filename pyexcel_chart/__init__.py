@@ -72,6 +72,17 @@ class ExLine(object):
         return chart_content
 
 
+class ExBar(ExLine):
+    def __init__(self):
+        self._chart_class = 'Bar'
+
+
+
+class ExStackedBar(ExLine):
+    def __init__(self):
+        self._chart_class = 'StackedBar'
+
+
 class ExRadar(ExLine):
     def __init__(self):
         self._chart_class = 'Radar'
@@ -202,13 +213,25 @@ class Chart(Renderer):
                 sheet, title=title,
                 label_x_in_column=label_x_in_column,
                 label_y_in_row=label_y_in_row, **keywords)
-        elif chart_type == 'line':
+        elif chart_type == 'bar':
+            xline = ExBar()
+            chart_content = xline.render_sheet(
+                sheet, title=title,
+                label_x_in_column=label_x_in_column,
+                label_y_in_row=label_y_in_row, **keywords)
+        elif chart_type == 'stackedbar':
+            xline = ExStackedBar()
+            chart_content = xline.render_sheet(
+                sheet, title=title,
+                label_x_in_column=label_x_in_column,
+                label_y_in_row=label_y_in_row, **keywords)
+        elif chart_type == 'dot':
             xline = ExDot()
             chart_content = xline.render_sheet(
                 sheet, title=title,
                 label_x_in_column=label_x_in_column,
                 label_y_in_row=label_y_in_row, **keywords)
-        elif chart_type == 'line':
+        elif chart_type == 'funnel':
             xline = ExFunnel()
             chart_content = xline.render_sheet(
                 sheet, title=title,
