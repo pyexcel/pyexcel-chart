@@ -48,7 +48,7 @@ class Chart(with_metaclass(MetaForChartRegistryOnly, object)):
         self._chart_class = self.chart_types.get(cls_name, 'line')
 
 
-class ExPie(Chart):
+class SimpleLayout(Chart):
     chart_types = dict(
         pie='Pie',
         box='Box'
@@ -72,7 +72,7 @@ class ExPie(Chart):
         return chart_content
 
 
-class ExLine(Chart):
+class ComplexLayout(Chart):
     chart_types = dict(
         line='Line',
         bar='Bar',
@@ -103,7 +103,7 @@ class ExLine(Chart):
         return chart_content
 
 
-class ExHistogram(Chart):
+class Histogram(Chart):
     chart_types = dict(
         histogram='Histogram'
     )
@@ -137,7 +137,7 @@ class ExHistogram(Chart):
         return chart_content
 
 
-class ExXY(Chart):
+class XY(Chart):
     chart_types = dict(
         xy='XY'
     )
@@ -178,7 +178,7 @@ def create_chart_factory(chart_type):
         raise Exception("No support for " + chart_type)
 
 
-class Chart(Renderer):
+class ChartRenderer(Renderer):
 
     file_types = ('svg',)
 
@@ -201,16 +201,18 @@ class Chart(Renderer):
                      **keywords):
         charter = create_chart_factory(chart_type)
         chart_content = charter.render_sheet(
-                sheet, title=title, **keywords)
-        if PY2:
-            chart_content.decode('utf-8')
-        self._stream.write(chart_content)
+            sheet, title=title, **keywords)
+        self._write_content(chart_content)
 
     def render_book(self, book, title=DEFAULT_TITLE,
                     chart_type=DEFAULT_CHART_TYPE, **keywords):
         charter = create_chart_factory(chart_type)
-        chart_content = charter.render_book(
-                book, title=title, **keywords)
+        chart_content = charter.render_book(book,
+                                            title=title,
+                                            **keywords)
+        self._write_content(chart_content)
+
+    def _write_content(self, chart_content):
         if PY2:
             chart_content.decode('utf-8')
         self._stream.write(chart_content)
