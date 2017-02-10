@@ -2,13 +2,13 @@ import os
 import pyexcel as pe
 
 
-def bar_chart():
+def test_bar_chart():
     data = [['a', 'b'], [1, 2]]
     pe.save_as(array=data, dest_file_name='test.bar.svg')
     os.unlink('test.bar.svg')
 
 
-def chart_parameters():
+def test_chart_parameters():
     data = [
         ["x", "y", "z"],
         [1, 2, 3],
