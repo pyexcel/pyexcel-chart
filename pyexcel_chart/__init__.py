@@ -91,7 +91,7 @@ class ComplexLayout(Chart):
             sheet.name_columns_by_row(label_y_in_row)
         if len(sheet.rownames) == 0:
             sheet.name_rows_by_column(label_x_in_column)
-            params['x_labels'] = sheet.rownames
+        params['x_labels'] = sheet.rownames
         params.update(keywords)
         the_dict = sheet.to_dict()
         cls = getattr(pygal, self._chart_class)
