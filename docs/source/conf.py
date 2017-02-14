@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
+import pdb;pdb.set_trace()
+sys.path.append(os.path.abspath('.'))
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
+    'pyexcel_sphinx_integration'
 ]
 
 intersphinx_mapping = {

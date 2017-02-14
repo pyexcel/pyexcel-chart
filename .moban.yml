@@ -6,7 +6,7 @@ configuration:
   configuration: pyexcel_chart.yml
 targets:
   - setup.py: setup.py
-  - "docs/source/conf.py": "docs/source/conf.py.jj2"
+  - "docs/source/conf.py": "docs/source/conf.py"
   - .travis.yml: travis.yml
   - requirements.txt: requirements.txt
   - LICENSE: LICENSE.jj2

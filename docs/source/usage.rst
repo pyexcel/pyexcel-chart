@@ -14,16 +14,15 @@ Pie chart
 .. csv-table::
    :file: ../../pie.csv
 
-.. image:: _static/ppie.svg
-   :width: 600px
-   :height: 400px
 		   
-Here is the source code using pyexcel::
+Here is the source code using pyexcel
 
-    >>> import pyexcel as p
-    >>> title = 'Browser usage in February 2012 (in %)'
-    >>> p.save_as(file_name='pie.csv', dest_chart_type='pie',
-    ...     dest_file_name='ppie.svg', dest_title=title)
+.. pyexcel-code::
+
+    title = 'Browser usage in February 2012 (in %)'
+    sheet = pyexcel.get_sheet(file_name='pie.csv')
+    svg = sheet.plot(chart_type='pie',
+         title=title, width=600, height=400, explicit_size=True)
 
 
 
