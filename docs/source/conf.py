@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-import pdb;pdb.set_trace()
 sys.path.append(os.path.abspath('.'))
 extensions = [
     'sphinx.ext.autodoc',

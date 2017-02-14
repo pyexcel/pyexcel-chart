@@ -1,7 +1,7 @@
 Usage
 ================================================================================
 
-There are currently four type of data layouts for rendering charts. 
+There are currently four type of data layouts for rendering charts.
 
 1 Simple Layout
 --------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ Pie chart
 .. csv-table::
    :file: ../../pie.csv
 
-		   
+
 Here is the source code using pyexcel
 
 .. pyexcel-code::
@@ -36,13 +36,15 @@ Box chart
 .. image:: _static/pbox.svg
    :width: 600px
    :height: 400px
-		   
-Here is the source code using pyexcel::
 
-    >>> import pyexcel as p
-    >>> title = 'V8 benchmark results'	
-    >>> p.save_as(file_name='box.csv', dest_chart_type='box',
-    ...     dest_file_name='pbox.svg', dest_title=title)
+Here is the source code using pyexcel:
+
+.. pyexcel-code::
+
+    title = 'V8 benchmark results'
+    sheet = pyexcel.get_sheet(file_name='box.csv')
+    svg = sheet.plot(chart_type='box',
+         title=title, width=600, height=400, explicit_size=True)
 
 2 Complex layout
 --------------------------------------------------------------------------------
@@ -58,16 +60,14 @@ Line
 .. csv-table::
    :file: ../../line.csv
 
-.. image:: _static/pline.svg
-   :width: 600px
-   :height: 400px
-		   
-Here is the source code using pyexcel::
+Here is the source code using pyexcel:
 
-    >>> import pyexcel as p
-    >>> title = 'Browser usage evolution (in %)'
-    >>> p.save_as(file_name='line.csv', dest_chart_type='line',
-    ...     dest_file_name='pline.svg', dest_title=title)
+.. pyexcel-code::
+
+    title = 'Browser usage evolution (in %)'
+    sheet = pyexcel.get_sheet(file_name='line.csv')
+    svg = sheet.plot(chart_type='line',
+        title=title, width=600, height=400, explicit_size=True)
 
 Dot chart
 ********************************************************************************
@@ -75,16 +75,14 @@ Dot chart
 .. csv-table::
    :file: ../../radar.csv
 
-.. image:: _static/pdot.svg
-   :width: 600px
-   :height: 400px
+Here is the source code using pyexcel:
 
-Here is the source code using pyexcel::
+.. pyexcel-code::
 
-    >>> import pyexcel as p
-    >>> title = 'V8 benchmark results'	
-    >>> p.save_as(file_name='radar.csv', dest_chart_type='dot',
-    ...     dest_file_name='pdot.svg', dest_title=title)
+    title = 'V8 benchmark results'
+    sheet = pyexcel.get_sheet(file_name='radar.csv')
+    svg = sheet.plot(chart_type='dot',
+        title=title, width=600, height=400, explicit_size=True)
 
 Funnel chart
 ********************************************************************************
@@ -92,16 +90,13 @@ Funnel chart
 .. csv-table::
    :file: ../../funnel.csv
 
-.. image:: _static/pfunnel.svg
-   :width: 600px
-   :height: 400px
-		   
+
 Here is the source code using pyexcel::
 
-    >>> import pyexcel as p
-    >>> title = 'V8 benchmark results'	
-    >>> p.save_as(file_name='funnel.csv', dest_chart_type='funnel',
-    ...     dest_file_name='pfunnel.svg', dest_title=title)
+    title = 'V8 benchmark results'
+    sheet = p.get_sheet(file_name='funnel.csv')
+    svg = sheet.plot(chart_type='funnel',
+        title=title, width=600, height=400, explicit_size=True)
 
 Radar chart
 ********************************************************************************
@@ -111,16 +106,14 @@ Radar chart
    :file: ../../radar.csv
 
 
-.. image:: _static/pradar.svg
-   :width: 600px
-   :height: 400px
-		   
 Here is the source code using pyexcel::
 
-    >>> import pyexcel as p
-    >>> title = 'V8 benchmark results'	
-    >>> p.save_as(file_name='radar.csv', dest_chart_type='radar',
-    ...     dest_file_name='pradar.svg', dest_title=title)
+.. pyexcel-code::
+
+    title = 'V8 benchmark results'
+    sheet = pyexcel.get_sheet(file_name='radar.csv')
+    svg = sheet.plot(chart_type='radar',
+        title=title, width=600, height=400, explicit_size=True)
 
 Histogram
 --------------------------------------------------------------------------------
@@ -131,15 +124,14 @@ in first, second and third columns.
 .. csv-table::
    :file: ../../histogram_wide_bars.csv
 
-.. image:: _static/phistogram_wide_bars.svg
-   :width: 600px
-   :height: 400px
-		   
-Here is the source code using pyexcel::
 
-    >>> import pyexcel as p
-    >>> p.save_as(file_name='histogram_wide_bars.csv', dest_chart_type='histogram',
-    ...     dest_file_name='phistogram_wide_bars.svg')
+Here is the source code using pyexcel:
+
+.. pyexcel-code::
+
+    sheet = pyexcel.get_sheet(file_name='histogram_wide_bars.csv')
+    svg = sheet.plot(chart_type='histogram',
+         width=600, height=400, explicit_size=True)
 
 
 In order to draw multiple histogram on the same chart, you will need to use a
@@ -148,12 +140,15 @@ Book, each sheet of which become a histogram. Here is how you can draw multiple 
 .. image:: _static/phistogram.svg
    :width: 600px
    :height: 400px
-		   
-Here is the source code using pyexcel::
 
-    >>> import pyexcel as p
-    >>> p.save_book_as(file_name='histogram.xlsx', dest_chart_type='histogram',
-    ...     dest_file_name='phistogram.svg')
+Here is the source code using pyexcel
+
+
+.. pyexcel-code::
+
+    book = pyexcel.get_book(file_name='histogram.xlsx')
+    svg = book.plot(chart_type='histogram',
+         width=600, height=400, explicit_size=True)
 
 XY
 --------------------------------------------------------------------------------
@@ -165,12 +160,11 @@ in individual sheets.
 .. csv-table::
    :file: ../../radar.csv
 
-.. image:: _static/pxy.svg
-   :width: 600px
-   :height: 400px
-		   
-Here is the source code using pyexcel::
 
-    >>> import pyexcel as p
-    >>> p.save_book_as(file_name='xy.xlsx', dest_chart_type='xy',
-    ...     dest_file_name='pxy.svg')
+Here is the source code using pyexcel
+
+.. pyexcel-code::
+
+    book = pyexcel.get_book(file_name='xy.xlsx')
+    svg = book.plot(chart_type='xy',
+         width=600, height=400, explicit_size=True)

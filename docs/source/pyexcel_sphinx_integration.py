@@ -41,23 +41,11 @@ else:
 class PygalDirective(Directive):
     """Execute the given python file and puts its result in the document."""
     required_arguments = 0
-    optional_arguments = 2
     final_argument_whitespace = True
     has_content = True
 
     def run(self):
-        width, height = map(int, self.arguments[:2]) if len(
-            self.arguments) >= 2 else (600, 400)
-        if len(self.arguments) == 1:
-            self.render_fix = bool(self.arguments[0])
-        elif len(self.arguments) == 3:
-            self.render_fix = bool(self.arguments[2])
-        else:
-            self.render_fix = False
-        self.content = list(self.content)
         content = list(self.content)
-        if self.render_fix:
-            content[-1] = 'rv = ' + content[-1]
         code = '\n'.join(content)
         scope = {'pyexcel': pyexcel}
         try:
@@ -69,19 +57,16 @@ class PygalDirective(Directive):
                 'An exception as occured during code parsing:'
                 ' \n %s' % format_exc(), type='ERROR', source='/',
                 level=3)]
-        if self.render_fix:
-            rv = scope['rv']
-        else:
-            chart = None
-            for key, value in scope.items():
-                if isinstance(value, BytesIO):
-                    chart = value
-                    #self.content.append(key + '.render()')
-                    break
-            if chart is None:
-                return [docutils.nodes.system_message(
-                    'No instance of graph found', level=3,
-                    type='ERROR', source='/')]
+        chart = None
+        for key, value in scope.items():
+            if isinstance(value, BytesIO):
+                chart = value
+                #self.content.append(key + '.render()')
+                break
+        if chart is None:
+            return [docutils.nodes.system_message(
+                'No instance of graph found', level=3,
+                type='ERROR', source='/')]
 
         try:
             svg = "%s" % chart.getvalue().decode('utf-8')
