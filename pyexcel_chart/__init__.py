@@ -8,4 +8,11 @@
     :license: New BSD License, see LICENSE for further details
 """
 
-__pyexcel_renderer_plugins__ = ['chart']
+__META__ = {
+    'plugin_type': 'renderer',
+    'submodule': 'chart',
+    'file_types': ['svg'],
+    'stream_type': 'binary'
+}
+
+__pyexcel_plugins__ = [__META__]
