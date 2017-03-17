@@ -61,7 +61,6 @@ class PygalDirective(Directive):
         for key, value in scope.items():
             if isinstance(value, BytesIO):
                 chart = value
-                #self.content.append(key + '.render()')
                 break
         if chart is None:
             return [docutils.nodes.system_message(
@@ -96,7 +95,7 @@ class PygalWithCode(PygalDirective):
         return [docutils.nodes.compound('', *node_list)]
 
 def setup(app):
-    app.add_directive('pygal', PygalDirective)
+    app.add_directive('pyexcel-chart', PygalDirective)
     app.add_directive('pyexcel-code', PygalWithCode)
 
     return {'version': '1.0.1'}

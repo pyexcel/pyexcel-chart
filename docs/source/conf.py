@@ -2,6 +2,10 @@
 import os
 import sys
 sys.path.append(os.path.abspath('.'))
+DESCRIPTION = (
+    'A wrapper library of pygal to visualize pyexcel data' +
+    ''
+)
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
@@ -29,15 +33,19 @@ html_static_path = ['_static']
 htmlhelp_basename = 'pyexcel-chartdoc'
 latex_elements = {}
 latex_documents = [
-    ('index', 'pyexcel-chart.tex', u'pyexcel-chart Documentation',
+    ('index', 'pyexcel-chart.tex',
+     'pyexcel-chart Documentation',
      'Onni Software Ltd.', 'manual'),
 ]
 man_pages = [
-    ('index', 'pyexcel-chart', u'pyexcel-chart Documentation',
+    ('index', 'pyexcel-chart',
+     'pyexcel-chart Documentation',
      [u'Onni Software Ltd.'], 1)
 ]
 texinfo_documents = [
-    ('index', 'pyexcel-chart', u'pyexcel-chart Documentation',
-     'Onni Software Ltd.', 'pyexcel-chart', 'One line description of project.',
+    ('index', 'pyexcel-chart',
+     'pyexcel-chart Documentation',
+     'Onni Software Ltd.', 'pyexcel-chart',
+     DESCRIPTION,
      'Miscellaneous'),
 ]

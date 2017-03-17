@@ -11,11 +11,10 @@ Series names are placed in the first row. The rest of the rows are data sets.
 Pie chart
 ********************************************************************************
 
-.. csv-table::
-   :file: ../../pie.csv
+.. pyexcel-table:: pie.csv
+   :width: 400
 
-
-Here is the source code using pyexcel
+ Here is the source code using pyexcel
 
 .. pyexcel-code::
 
@@ -25,17 +24,13 @@ Here is the source code using pyexcel
          title=title, width=600, height=400, explicit_size=True)
 
 
-
 Box chart
 ********************************************************************************
 
 
-.. csv-table::
-   :file: ../../box.csv
+.. pyexcel-table:: box.csv
+   :width: 450
 
-.. image:: _static/pbox.svg
-   :width: 600px
-   :height: 400px
 
 Here is the source code using pyexcel:
 
@@ -57,8 +52,9 @@ y labels locate in the first row
 Line
 ********************************************************************************
 
-.. csv-table::
-   :file: ../../line.csv
+.. pyexcel-table:: line.csv
+   :width: 450
+
 
 Here is the source code using pyexcel:
 
@@ -72,8 +68,9 @@ Here is the source code using pyexcel:
 Dot chart
 ********************************************************************************
 
-.. csv-table::
-   :file: ../../radar.csv
+.. pyexcel-table:: radar.csv
+   :width: 450
+
 
 Here is the source code using pyexcel:
 
@@ -87,14 +84,16 @@ Here is the source code using pyexcel:
 Funnel chart
 ********************************************************************************
 
-.. csv-table::
-   :file: ../../funnel.csv
+.. pyexcel-table:: funnel.csv
+   :width: 450
 
 
-Here is the source code using pyexcel::
+Here is the source code using pyexcel:
+
+.. pyexcel-code::
 
     title = 'V8 benchmark results'
-    sheet = p.get_sheet(file_name='funnel.csv')
+    sheet = pyexcel.get_sheet(file_name='funnel.csv')
     svg = sheet.plot(chart_type='funnel',
         title=title, width=600, height=400, explicit_size=True)
 
@@ -102,11 +101,13 @@ Radar chart
 ********************************************************************************
 
 
-.. csv-table::
-   :file: ../../radar.csv
+.. pyexcel-table:: radar.csv
+   :width: 450
 
 
-Here is the source code using pyexcel::
+Here is the source code using pyexcel:
+
+
 
 .. pyexcel-code::
 
@@ -115,14 +116,15 @@ Here is the source code using pyexcel::
     svg = sheet.plot(chart_type='radar',
         title=title, width=600, height=400, explicit_size=True)
 
+
 Histogram
 --------------------------------------------------------------------------------
 
 To draw a histogram, heights, starts and stops should be placed sequentially
 in first, second and third columns.
 
-.. csv-table::
-   :file: ../../histogram_wide_bars.csv
+.. pyexcel-table:: histogram_wide_bars.csv
+   :width: 300
 
 
 Here is the source code using pyexcel:
@@ -137,13 +139,12 @@ Here is the source code using pyexcel:
 In order to draw multiple histogram on the same chart, you will need to use a
 Book, each sheet of which become a histogram. Here is how you can draw multiple histogram.
 
-.. image:: _static/phistogram.svg
-   :width: 600px
-   :height: 400px
-
 Here is the source code using pyexcel
 
+.. pyexcel-table:: histogram.xlsx
+   :width: 300
 
+				   
 .. pyexcel-code::
 
     book = pyexcel.get_book(file_name='histogram.xlsx')
@@ -157,8 +158,9 @@ In order to draw XY graph, x, y data should be placed vertically at first and
 second column. In order to draw multiple lines, their data should be placed
 in individual sheets.
 
-.. csv-table::
-   :file: ../../radar.csv
+
+.. pyexcel-table:: xy.xlsx
+   :width: 450
 
 
 Here is the source code using pyexcel

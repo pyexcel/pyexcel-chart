@@ -10,7 +10,7 @@
 import sys
 import pygal
 from functools import partial
-from pyexcel.renderers.factory import Renderer
+from pyexcel.renderers import Renderer
 from pyexcel._compact import with_metaclass
 
 
