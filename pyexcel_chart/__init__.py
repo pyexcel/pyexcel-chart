@@ -7,12 +7,11 @@
     :copyright: (c) 2016-2017 by Onni Software Ltd.
     :license: New BSD License, see LICENSE for further details
 """
+from pyexcel.internal.common import PyexcelPluginList
 
-__META__ = {
-    'plugin_type': 'renderer',
-    'submodule': 'chart',
-    'file_types': ['svg'],
-    'stream_type': 'binary'
-}
 
-__pyexcel_plugins__ = [__META__]
+__pyexcel_plugins__ = PyexcelPluginList(__name__).add_a_renderer(
+    submodule='chart',
+    file_types=['svg'],
+    stream_type='binary'
+)
