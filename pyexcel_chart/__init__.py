@@ -10,8 +10,8 @@
 from pyexcel.internal.common import PyexcelPluginList
 
 
-__pyexcel_plugins__ = PyexcelPluginList(__name__).add_a_renderer(
-    submodule='chart',
+PyexcelPluginList(__name__).add_a_renderer(
+    submodule='chart.ChartRenderer',
     file_types=['svg'],
     stream_type='binary'
 )
