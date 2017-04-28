@@ -11,7 +11,7 @@ import sys
 import pygal
 from functools import partial
 from pyexcel.renderer import Renderer
-from pyexcel._compact import with_metaclass
+from lml.plugin import with_metaclass
 
 
 PY2 = sys.version_info[0] == 2
