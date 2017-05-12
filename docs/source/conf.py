@@ -11,7 +11,8 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
-    'pyexcel_sphinx_integration'
+    'pyexcel_sphinx_integration',
+    'sphinxcontrib.excel'
 ]
 
 intersphinx_mapping = {

@@ -12,6 +12,6 @@ from pyexcel.internal.common import PyexcelPluginList
 
 PyexcelPluginList(__name__).add_a_renderer(
     submodule='chart.ChartRenderer',
-    file_types=['svg'],
-    stream_type='binary'
+    file_types=['svg']
+
 )
