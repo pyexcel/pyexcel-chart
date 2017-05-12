@@ -24,10 +24,12 @@
 from docutils.parsers.rst import Directive
 from traceback import format_exc, print_exc
 from sphinx.directives.code import CodeBlock
+from sphinx.util.i18n import search_image_for_language
 
 import docutils.core
 import pyexcel
 import sys
+import os
 
 PY2 = sys.version_info[0] == 2
 
@@ -45,7 +47,12 @@ class PygalDirective(Directive):
     has_content = True
 
     def run(self):
-        content = list(self.content)
+        env = self.state.document.settings.env
+        fn = search_image_for_language('pie.csv', env)
+        relfn, excel_file = env.relfn2path(fn)
+        working_path = os.path.dirname(excel_file)
+        content = ["import os", "os.chdir('%s')" % working_path]
+        content += list(self.content)
         code = '\n'.join(content)
         scope = {'pyexcel': pyexcel}
         try:
