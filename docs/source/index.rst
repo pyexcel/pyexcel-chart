@@ -29,7 +29,7 @@ or clone it and install it:
 
 .. code-block:: bash
 
-    $ git clone http://github.com/pyexcel/pyexcel-chart.git
+    $ git clone https://github.com/pyexcel/pyexcel-chart.git
     $ cd pyexcel-chart
     $ python setup.py install
 

@@ -2,11 +2,14 @@
 pyexcel-chart - Let you focus on presentation, instead of chart types
 ================================================================================
 
+.. image:: https://raw.githubusercontent.com/pyexcel/pyexcel.github.io/master/images/patreon.png
+   :target: https://www.patreon.com/pyexcel
+
 .. image:: https://api.travis-ci.org/pyexcel/pyexcel-chart.svg?branch=master
    :target: http://travis-ci.org/pyexcel/pyexcel-chart
 
 .. image:: https://codecov.io/github/pyexcel/pyexcel-chart/coverage.png
-    :target: https://codecov.io/github/pyexcel/pyexcel-chart
+   :target: https://codecov.io/github/pyexcel/pyexcel-chart
 
 .. image:: https://readthedocs.org/projects/pyexcel-chart/badge/?version=latest
    :target: http://pyexcel-chart.readthedocs.org/en/latest/
@@ -30,7 +33,7 @@ or clone it and install it:
 
 .. code-block:: bash
 
-    $ git clone http://github.com/pyexcel/pyexcel-chart.git
+    $ git clone https://github.com/pyexcel/pyexcel-chart.git
     $ cd pyexcel-chart
     $ python setup.py install
 
@@ -95,3 +98,10 @@ License
 ================================================================================
 
 New BSD License
+
+Support the project
+================================================================================
+
+If your company has embedded pyexcel and its components into a revenue generating
+product, please `support me on patreon <https://www.patreon.com/bePatron?u=5537627>`_ to
+maintain the project and develop it further.

@@ -180,8 +180,6 @@ def create_chart_factory(chart_type):
 
 class ChartRenderer(Renderer):
 
-    file_types = ('svg',)
-
     def __init__(self, file_type):
         Renderer.__init__(self, file_type)
         if not PY2:

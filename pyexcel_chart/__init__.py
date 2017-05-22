@@ -7,11 +7,11 @@
     :copyright: (c) 2016-2017 by Onni Software Ltd.
     :license: New BSD License, see LICENSE for further details
 """
-from pyexcel.internal.common import PyexcelPluginList
+from pyexcel.internal.common import PyexcelPluginChain
 
 
-PyexcelPluginList(__name__).add_a_renderer(
-    submodule='chart.ChartRenderer',
+PyexcelPluginChain(__name__).add_a_renderer(
+    relative_plugin_class_path='chart.ChartRenderer',
     file_types=['svg']
 
 )
