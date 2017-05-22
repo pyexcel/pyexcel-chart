@@ -10,8 +10,10 @@
 import sys
 import pygal
 from functools import partial
+
+from six import with_metaclass
+
 from pyexcel.renderer import Renderer
-from lml.plugin import with_metaclass
 
 
 PY2 = sys.version_info[0] == 2
