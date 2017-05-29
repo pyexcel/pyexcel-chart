@@ -1,6 +1,12 @@
 `pyexcel-chart` - Let you focus on data, instead of file formats
 ================================================================================
 
+.. note::
+
+   It is still under writing. My effort is spent elsewhere. Please star this
+   project to show your interest
+
+
 :Author: C.W.
 :Source code: http://github.com/pyexcel/pyexcel-chart.git
 :Issues: http://github.com/pyexcel/pyexcel-chart/issues
