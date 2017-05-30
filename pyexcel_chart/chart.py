@@ -11,7 +11,7 @@ import sys
 import pygal
 from functools import partial
 
-from six import with_metaclass
+from lml.plugin import PluginInfo, PluginManager
 
 from pyexcel.renderer import Renderer
 
@@ -20,6 +20,17 @@ PY2 = sys.version_info[0] == 2
 DEFAULT_TITLE = 'pyexcel chart rendered by pygal'
 KEYWORD_CHART_TYPE = 'chart_type'
 DEFAULT_CHART_TYPE = 'bar'
+CHART_TYPES = dict(
+    pie='Pie',
+    box='Box',
+    line='Line',
+    bar='Bar',
+    stacked_bar='StackedBar',
+    radar='Radar',
+    dot='Dot',
+    funnel='Funnel',
+    xy='XY',
+    histogram='Histogram')
 
 
 if PY2:
@@ -28,33 +39,14 @@ else:
     from io import BytesIO
 
 
-_charts = []
-
-
-def register_class(cls):
-    _charts.append(cls)
-
-
-class MetaForChartRegistryOnly(type):
-    """sole class registry"""
-    def __init__(cls, name, bases, nmspc):
-        super(MetaForChartRegistryOnly, cls).__init__(
-            name, bases, nmspc)
-        register_class(cls)
-
-
-class Chart(with_metaclass(MetaForChartRegistryOnly, object)):
-    chart_types = dict()
+class Chart(object):
 
     def __init__(self, cls_name):
-        self._chart_class = self.chart_types.get(cls_name, 'line')
+        self._chart_class = CHART_TYPES.get(cls_name, 'line')
 
 
+@PluginInfo('chart', tags=['pie', 'box'])
 class SimpleLayout(Chart):
-    chart_types = dict(
-        pie='Pie',
-        box='Box'
-    )
 
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
                      label_y_in_row=0,
@@ -74,15 +66,9 @@ class SimpleLayout(Chart):
         return chart_content
 
 
+@PluginInfo('chart',
+          tags=['line', 'bar', 'stacked_bar', 'radar', 'dot', 'funnel'])
 class ComplexLayout(Chart):
-    chart_types = dict(
-        line='Line',
-        bar='Bar',
-        stacked_bar='StackedBar',
-        radar='Radar',
-        dot='Dot',
-        funnel='Funnel'
-    )
 
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
                      label_x_in_column=0, label_y_in_row=0,
@@ -105,11 +91,8 @@ class ComplexLayout(Chart):
         return chart_content
 
 
+@PluginInfo('chart', tags=['histogram'])
 class Histogram(Chart):
-    chart_types = dict(
-        histogram='Histogram'
-    )
-
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
                      height_in_column=0, start_in_column=1,
                      stop_in_column=2,
@@ -139,10 +122,8 @@ class Histogram(Chart):
         return chart_content
 
 
+@PluginInfo('chart', tags=['xy'])
 class XY(Chart):
-    chart_types = dict(
-        xy='XY'
-    )
 
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
                      x_in_column=0,
@@ -171,14 +152,19 @@ class XY(Chart):
         return chart_content
 
 
-def create_chart_factory(chart_type):
-    for cls in _charts:
-        if chart_type in cls.chart_types.keys():
-            instance = cls(chart_type)
-            return instance
-    else:
-        raise Exception("No support for " + chart_type)
+class ChartManager(PluginManager):
+    def __init__(self):
+        PluginManager.__init__(self, 'chart')
 
+    def get_a_plugin(self, key, **keywords):
+        self._logger.debug("get a plugin called")
+        plugin = self.load_me_now(key)
+        return plugin(key)
+
+    def raise_exception(self, key):
+        raise Exception("No support for " + key)
+
+MANAGER = ChartManager()
 
 class ChartRenderer(Renderer):
 
@@ -199,14 +185,14 @@ class ChartRenderer(Renderer):
     def render_sheet(self, sheet, title=DEFAULT_TITLE,
                      chart_type=DEFAULT_CHART_TYPE,
                      **keywords):
-        charter = create_chart_factory(chart_type)
+        charter = MANAGER.get_a_plugin(chart_type)
         chart_content = charter.render_sheet(
             sheet, title=title, **keywords)
         self._write_content(chart_content)
 
     def render_book(self, book, title=DEFAULT_TITLE,
                     chart_type=DEFAULT_CHART_TYPE, **keywords):
-        charter = create_chart_factory(chart_type)
+        charter = MANAGER.get_a_plugin(chart_type)
         chart_content = charter.render_book(book,
                                             title=title,
                                             **keywords)

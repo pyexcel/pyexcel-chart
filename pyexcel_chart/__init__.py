@@ -13,5 +13,4 @@ from pyexcel.internal.common import PyexcelPluginChain
 PyexcelPluginChain(__name__).add_a_renderer(
     relative_plugin_class_path='chart.ChartRenderer',
     file_types=['svg']
-
 )
