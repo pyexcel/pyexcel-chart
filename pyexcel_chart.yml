@@ -5,7 +5,5 @@ version: 0.0.1
 release: 0.0.1
 file_type: xls
 dependencies:
-  - pyexcel>=0.3.4
-  - pygal>=2.2.3
-  - six
+  - pyexcel>=0.5.0
 description: A wrapper library of pygal to visualize pyexcel data
